@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Jeu de la Vie — Demo</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="app">
+    <h1>Jeu de la Vie (Conway)</h1>
+
+    <div class="controls">
+      <label>Rows: <input id="rows" type="number" value="20" min="1"></label>
+      <label>Cols: <input id="cols" type="number" value="20" min="1"></label>
+      <label><input id="random" type="checkbox" checked> Random</label>
+      <button id="createBtn">Créer</button>
+      <button id="stepBtn">Avancer</button>
+      <button id="refreshBtn">Rafraîchir</button>
+    </div>
+
+    <div id="status" class="status">Aucune grille chargée.</div>
+
+    <div id="gridContainer" class="grid"></div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

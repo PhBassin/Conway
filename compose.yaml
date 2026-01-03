@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  conway_v1:
+    build: .
+    image: conway_v1:latest
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    environment:
+      JAVA_OPTS: "-Xms256m -Xmx512m"
