@@ -11,9 +11,9 @@ h1{margin:0 0 12px}
 .controls input[type=number]{width:64px;padding:4px}
 .controls button{padding:6px 10px;border:0;background:var(--accent);color:white;border-radius:6px}
 .status{margin-bottom:12px;color:#555}
-.grid{display:inline-block;border:1px solid #ddd;background:white}
-.row{display:flex}
-.cell{width:18px;height:18px;border-right:1px solid #eee;border-bottom:1px solid #eee;box-sizing:border-box}
+.grid{display:grid;border:1px solid #ddd;background:white;max-width:90vw;max-height:70vh;overflow:auto;padding:0}
+.row{display:contents}
+.cell{border-right:1px solid #eee;border-bottom:1px solid #eee;box-sizing:border-box;min-width:0;min-height:0;aspect-ratio:1}
 .cell.alive{background:var(--alive)}
 .cell.dead{background:var(--dead)}
 .controls button:disabled{opacity:0.6}

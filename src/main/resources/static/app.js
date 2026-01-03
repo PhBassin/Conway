@@ -21,6 +21,8 @@ function renderGrid(grid){
   currentGrid = grid;
   gridContainer.innerHTML = '';
   if (!grid) return;
+  const cols = grid[0] ? grid[0].length : 1;
+  gridContainer.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
   for(let r=0;r<grid.length;r++){
     const row = document.createElement('div');
     row.className = 'row';
