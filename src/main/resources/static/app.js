@@ -6,8 +6,14 @@ const colsInput = document.getElementById('cols');
 const randomCheckbox = document.getElementById('random');
 const statusEl = document.getElementById('status');
 const gridContainer = document.getElementById('gridContainer');
+const loopsInput = document.getElementById('loops');
+const delayInput = document.getElementById('delay');
+const infiniteCheckbox = document.getElementById('infinite');
+const startAutoBtn = document.getElementById('startAutoBtn');
+const stopAutoBtn = document.getElementById('stopAutoBtn');
 
 let currentGrid = null;
+let autoRunning = false;
 
 function setStatus(text){ statusEl.textContent = text; }
 
@@ -68,6 +74,45 @@ async function refresh(){
 createBtn.addEventListener('click', createGame);
 stepBtn.addEventListener('click', step);
 refreshBtn.addEventListener('click', refresh);
+startAutoBtn.addEventListener('click', startAuto);
+stopAutoBtn.addEventListener('click', stopAuto);
 
 // Try to load existing grid on open
 refresh();
+
+function sleep(ms){ return new Promise(res => setTimeout(res, ms)); }
+
+async function startAuto(){
+  if (autoRunning) return;
+  autoRunning = true;
+  startAutoBtn.disabled = true;
+  stopAutoBtn.disabled = false;
+  createBtn.disabled = true;
+  stepBtn.disabled = true;
+  refreshBtn.disabled = true;
+  setStatus('Auto: démarrage...');
+  let loops = Number(loopsInput.value) || 0;
+  const delay = Math.max(1, Number(delayInput.value) || 500);
+  const infinite = infiniteCheckbox.checked;
+  try{
+    let i = 0;
+    while(autoRunning && (infinite || i < loops)){
+      await step();
+      i++;
+      if (!autoRunning) break;
+      await sleep(delay);
+    }
+    setStatus('Auto terminé');
+  }catch(e){ setStatus('Auto erreur: '+e.message); }
+  stopAuto();
+}
+
+function stopAuto(){
+  autoRunning = false;
+  startAutoBtn.disabled = false;
+  stopAutoBtn.disabled = true;
+  createBtn.disabled = false;
+  stepBtn.disabled = false;
+  refreshBtn.disabled = false;
+  setStatus('Auto arrêté');
+}
