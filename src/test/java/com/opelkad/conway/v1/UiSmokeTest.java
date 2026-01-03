@@ -33,9 +33,7 @@ class UiSmokeTest {
         assertIdExists(doc, "createBtn");
         assertIdExists(doc, "stepBtn");
         assertIdExists(doc, "refreshBtn");
-        assertIdExists(doc, "loops");
         assertIdExists(doc, "delay");
-        assertIdExists(doc, "infinite");
         assertIdExists(doc, "startAutoBtn");
         assertIdExists(doc, "stopAutoBtn");
         assertIdExists(doc, "gridContainer");

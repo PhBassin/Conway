@@ -6,9 +6,7 @@ const colsInput = document.getElementById('cols');
 const randomCheckbox = document.getElementById('random');
 const statusEl = document.getElementById('status');
 const gridContainer = document.getElementById('gridContainer');
-const loopsInput = document.getElementById('loops');
 const delayInput = document.getElementById('delay');
-const infiniteCheckbox = document.getElementById('infinite');
 const startAutoBtn = document.getElementById('startAutoBtn');
 const stopAutoBtn = document.getElementById('stopAutoBtn');
 
@@ -93,14 +91,10 @@ async function startAuto(){
   stepBtn.disabled = true;
   refreshBtn.disabled = true;
   setStatus('Auto: démarrage...');
-  let loops = Number(loopsInput.value) || 0;
   const delay = Math.max(1, Number(delayInput.value) || 500);
-  const infinite = infiniteCheckbox.checked;
   try{
-    let i = 0;
-    while(autoRunning && (infinite || i < loops)){
+    while(autoRunning){
       await step();
-      i++;
       if (!autoRunning) break;
       await sleep(delay);
     }
